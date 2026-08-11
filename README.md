@@ -1,6 +1,7 @@
 # Journey Chirp
 
 A single full-screen button for Journey chirping noises.
+Fan project.
 
 ## Install on iPhone
 
