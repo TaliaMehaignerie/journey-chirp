@@ -4,7 +4,7 @@ html, body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: #0b0f14;
+  background: #d29850;
   /* Prevent iOS bounce/scroll and pull-to-refresh */
   position: fixed;
   inset: 0;
@@ -12,10 +12,6 @@ html, body {
 }
 
 #chirp-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   position: fixed;
   inset: 0;
   width: 100%;
@@ -28,8 +24,7 @@ html, body {
 
   border: none;
   margin: 0;
-  background: radial-gradient(circle at 50% 40%, #1b2430 0%, #0b0f14 70%);
-  color: #e8edf2;
+  background-color: #d29850;
 
   /* Kill iOS long-press context menu, selection, callouts, tap highlight */
   -webkit-touch-callout: none;
@@ -43,22 +38,10 @@ html, body {
 }
 
 #chirp-button.pressed {
-  background: radial-gradient(circle at 50% 40%, #26323f 0%, #0e141b 70%);
+  background-color: #b98443;
   transform: scale(0.98);
 }
 
 #chirp-button.long-armed {
-  background: radial-gradient(circle at 50% 40%, #3a4a3c 0%, #0e141b 70%);
-}
-
-#chirp-icon {
-  font-size: min(28vw, 220px);
-  line-height: 1;
-  pointer-events: none;
-  filter: drop-shadow(0 0 20px rgba(255,255,255,0.08));
-  transition: transform 120ms ease;
-}
-
-#chirp-button.pressed #chirp-icon {
-  transform: scale(0.94);
+  background-color: #e8a83e;
 }

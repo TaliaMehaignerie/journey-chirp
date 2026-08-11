@@ -4,7 +4,6 @@
   var LONG_PRESS_MS = 500;
 
   var button = document.getElementById("chirp-button");
-  var audio = document.getElementById("audio-player");
 
   var pressStart = 0;
   var longArmedTimer = null;
@@ -13,6 +12,11 @@
   // Avoid playing the exact same clip twice in a row when possible.
   var lastShort = null;
   var lastLong = null;
+
+  // Clips currently playing. Each tap gets its own Audio instance so rapid
+  // taps overlap and every clip plays out to the end instead of being cut
+  // off by the next tap.
+  var activeAudio = [];
 
   function pickRandom(list, last) {
     if (!list || list.length === 0) return null;
@@ -26,17 +30,22 @@
 
   function playFile(folder, file) {
     var path = "chirps/" + folder + "/" + file;
-    try {
-      audio.pause();
-      audio.currentTime = 0;
-    } catch (e) {
-      /* ignore */
+    var clip = new Audio(path);
+    clip.playsInline = true;
+    activeAudio.push(clip);
+
+    function cleanup() {
+      var idx = activeAudio.indexOf(clip);
+      if (idx !== -1) activeAudio.splice(idx, 1);
     }
-    audio.src = path;
-    var playPromise = audio.play();
+    clip.addEventListener("ended", cleanup);
+    clip.addEventListener("error", cleanup);
+
+    var playPromise = clip.play();
     if (playPromise && typeof playPromise.catch === "function") {
       playPromise.catch(function (err) {
         console.error("Playback failed for " + path, err);
+        cleanup();
       });
     }
   }

@@ -1,6 +1,6 @@
 // Bump this whenever chirps-data.js changes (new/removed audio files) or any
 // core asset changes, so clients pick up a fresh cache.
-var CACHE_VERSION = "v2";
+var CACHE_VERSION = "v3";
 var CACHE_NAME = "chirps-cache-" + CACHE_VERSION;
 
 importScripts("chirps-data.js"); // defines CHIRPS
