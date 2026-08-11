@@ -1,0 +1,64 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #0b0f14;
+  /* Prevent iOS bounce/scroll and pull-to-refresh */
+  position: fixed;
+  inset: 0;
+  overscroll-behavior: none;
+}
+
+#chirp-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+
+  /* Respect iPhone notch / home indicator safe areas */
+  padding: env(safe-area-inset-top) env(safe-area-inset-right)
+           env(safe-area-inset-bottom) env(safe-area-inset-left);
+  box-sizing: border-box;
+
+  border: none;
+  margin: 0;
+  background: radial-gradient(circle at 50% 40%, #1b2430 0%, #0b0f14 70%);
+  color: #e8edf2;
+
+  /* Kill iOS long-press context menu, selection, callouts, tap highlight */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: none;
+
+  cursor: pointer;
+  transition: background-color 120ms ease, transform 80ms ease;
+}
+
+#chirp-button.pressed {
+  background: radial-gradient(circle at 50% 40%, #26323f 0%, #0e141b 70%);
+  transform: scale(0.98);
+}
+
+#chirp-button.long-armed {
+  background: radial-gradient(circle at 50% 40%, #3a4a3c 0%, #0e141b 70%);
+}
+
+#chirp-icon {
+  font-size: min(28vw, 220px);
+  line-height: 1;
+  pointer-events: none;
+  filter: drop-shadow(0 0 20px rgba(255,255,255,0.08));
+  transition: transform 120ms ease;
+}
+
+#chirp-button.pressed #chirp-icon {
+  transform: scale(0.94);
+}
